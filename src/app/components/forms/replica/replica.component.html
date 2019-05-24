@@ -39,30 +39,60 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-1 col-form-label">Edad</label>
-        <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="Edad del fósil expresada en años" formControlName="edad">
+
+    <div class="form-row">
+        <div class="form-group col">
+            <label class="col-1 col-form-label">Edad</label>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Edad del fósil expresada en años" formControlName="edad">
+            </div>
+        </div>
+        <div class="form-group col">
+            <label class="col-1 col-form-label">Fecha</label>
+            <div class="col-md-12">
+                <input type="date" class="form-control" placeholder="dd/mm/aaaa" formControlName="fecha">
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-1 col-form-label">Colector</label>
-        <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="colector" formControlName="colector">
+
+    <div class="form-group row">
+        <label class="col-12 col-form-label">Colector</label>
+        <div class="col">
+            <div class="col-md-12" formArrayName="colector">
+                <input *ngFor="let colector of formReplica.controls['colector'].controls; let i=index" type="text" class="form-control m-1" placeholder="colector" [formControlName]="i">
+
+            </div>
+        </div>
+        <div class="col">
+            <button (click)="agregarColector()" type="button" class="btn btn-primary">agregar</button>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-1 col-form-label">Ubicacion</label>
-        <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="ubicacion" formControlName="ubicacion">
+
+    <div formGroupName="ubicacion">
+        <label class="col-12 col-form-label">Ubicación de la Replica</label>
+        <div class="form-group row">
+
+            <div class="form-group col">
+
+                <div class="col-md-12">
+                    <input type="text" class="form-control" placeholder="Codigo de repositorio" formControlName="codRespositorio">
+                </div>
+            </div>
+            <div class="form-group col">
+
+                <div class="col-md-12">
+                    <input type="text" class="form-control" placeholder="Nro de estante" formControlName="numEstante">
+                </div>
+            </div>
+            <div class="form-group col">
+
+                <div class="col-md-12">
+                    <input type="text" class="form-control" placeholder="Nro de estanteria" formControlName="numEstanteria">
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-1 col-form-label">Fecha</label>
-        <div class="col-md-3">
-            <input type="date" class="form-control" placeholder="dd/mm/aaaa" formControlName="fecha">
-        </div>
-    </div>
+
     <div class="form-group">
         <label class="col-1 col-form-label">Preparador</label>
         <div class="col-md-8">

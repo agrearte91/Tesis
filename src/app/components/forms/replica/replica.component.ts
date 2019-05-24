@@ -16,7 +16,7 @@ export class ReplicaComponent implements OnInit {
     localidad:null
     unidad:null
     edad:null
-    colector:null
+    colector:any[]
     ubicacion: {
       codRepositorio: null,
       numEstante: null,
@@ -36,15 +36,17 @@ export class ReplicaComponent implements OnInit {
       'localidad': new FormControl('',Validators.required),
       'unidad': new FormControl('',Validators.required),
       'edad': new FormControl('',Validators.required),
-      'colector': new FormControl('',Validators.required),
+      'colector': new FormArray([
+        new FormControl('',Validators.required)
+      ]),
       'ubicacion': new FormGroup({
         'codRespositorio': new FormControl('',Validators.required),
         'numEstante': new FormControl('',Validators.required),
-        'numEstanterias': new FormControl('',Validators.required)
+        'numEstanteria': new FormControl('',Validators.required)
       }), 
       'fecha': new FormControl('',Validators.required),
       'preparador': new FormControl('',Validators.required)
-    })
+    });
    }
 
   ngOnInit() {
@@ -52,5 +54,11 @@ export class ReplicaComponent implements OnInit {
 
   guardarFormulario(){
     console.log(this.formReplica)
+  }
+
+  agregarColector(){
+    (<FormArray>this.formReplica.controls['colector']).push(
+      new FormControl('',Validators.required)
+    )
   }
 }
