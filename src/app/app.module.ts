@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { ReplicaComponent } from './components/forms/replica/replica.component';
@@ -13,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 //Rutas
 import { ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 
 @NgModule({
@@ -28,6 +32,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES, {useHash:true})
   ],
   providers: [],
