@@ -32,7 +32,7 @@ export class ReplicaComponent implements OnInit {
     this.formReplica = new FormGroup({
       'codigo': new FormControl('',Validators.required),
       'taxon': new FormControl('',Validators.required),
-      'descripcion': new FormControl('',Validators.required),
+      'descripcion': new FormControl('',[Validators.required,Validators.minLength(5)]),
       'localidad': new FormControl('',Validators.required),
       'unidad': new FormControl('',Validators.required),
       'edad': new FormControl('',Validators.required),
@@ -41,12 +41,14 @@ export class ReplicaComponent implements OnInit {
       ]),
       'ubicacion': new FormGroup({
         'codRespositorio': new FormControl('',Validators.required),
-        'numEstante': new FormControl('',Validators.required),
+        'numEstante': new FormControl('',[Validators.required]),
         'numEstanteria': new FormControl('',Validators.required)
       }), 
       'fecha': new FormControl('',Validators.required),
       'preparador': new FormControl('',Validators.required)
     });
+
+    console.log(this.formReplica)
    }
 
   ngOnInit() {
@@ -60,5 +62,10 @@ export class ReplicaComponent implements OnInit {
     (<FormArray>this.formReplica.controls['colector']).push(
       new FormControl('',Validators.required)
     )
+  }
+  quitarColector(i){
+    const arrayControl=<FormArray>this.formReplica.controls['colector'];
+    arrayControl.removeAt(i);
+ 
   }
 }

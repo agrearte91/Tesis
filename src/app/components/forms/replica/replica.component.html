@@ -20,10 +20,16 @@
 
     <div class="form-group">
         <label class="col-1 col-form-label">Descripción</label>
-        <div class="col-md-12">
-
-            <input type="text" class="form-control" placeholder="breve descripción de la réplica" formControlName="descripcion">
+        <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['descripcion'].valid}">
+            <input type="text" class="form-control is-invalid" placeholder="breve descripción de la réplica" formControlName="descripcion">
+            <div class="invalid-feedback" *ngIf="formReplica.get('descripcion').errors?.minlength">
+                La descripcion debe tener una logitud minima de 5 caracteres
+            </div>
+            <div class="invalid-feedback" *ngIf="formReplica.get('descripcion').errors?.required">
+                Este campo es obligatorio
+            </div>
         </div>
+
     </div>
     <div class="form-row">
         <div class="form-group col">
@@ -44,7 +50,7 @@
         <div class="form-group col">
             <label class="col-1 col-form-label">Edad</label>
             <div class="col-md-12">
-                <input type="text" class="form-control" placeholder="Edad del fósil expresada en años" formControlName="edad">
+                <input type="number" class="form-control" placeholder="Edad del fósil expresada en años" formControlName="edad">
             </div>
         </div>
         <div class="form-group col">
@@ -56,15 +62,24 @@
     </div>
 
     <div class="form-group row">
-        <label class="col-12 col-form-label">Colector</label>
-        <div class="col">
-            <div class="col-md-12" formArrayName="colector">
-                <input *ngFor="let colector of formReplica.controls['colector'].controls; let i=index" type="text" class="form-control m-1" placeholder="colector" [formControlName]="i">
 
+        <div class="form-group col">
+            <label class="col-12 col-form-label">Colector</label>
+            <div *ngFor="let colector of formReplica.controls['colector'].controls; let i=index" class="col-md-12" formArrayName="colector">
+                <div class="form-group row">
+                    <div class="form-group col col-9">
+                        <input type="text" class="form-control" placeholder="colector" [formControlName]="i">
+                    </div>
+                    <div class="form-group col" *ngIf="i>0">
+
+                        <button (click)="quitarColector(i)" type="button" class="btn btn-outline-danger">Quitar</button>
+
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col">
-            <button (click)="agregarColector()" type="button" class="btn btn-primary">agregaraa</button>
+        <div class="form-group col">
+            <button (click)="agregarColector()" type="button" class="btn btn-primary">agregar</button>
         </div>
     </div>
 
@@ -100,9 +115,11 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!formReplica.valid">
-        Confirmar
-    </button>
+    <div class="form-row">
+        <button type="submit" class="btn btn-primary col" [disabled]="!formReplica.valid">
+            Confirmar
+            </button>
+    </div>
 
     <hr> {{formReplica.valid}}
 </form>
