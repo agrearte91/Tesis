@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms'
-
 @Component({
-  selector: 'app-replica',
-  templateUrl: './replica.component.html',
+  selector: 'app-form-replica',
+  templateUrl: './form-replica.component.html',
   styleUrls: []
 })
-export class ReplicaComponent implements OnInit {
+export class FormReplicaComponent implements OnInit {
+
   
   formReplica:FormGroup;
 
@@ -45,7 +45,8 @@ export class ReplicaComponent implements OnInit {
         'numEstanteria': new FormControl('',Validators.required)
       }), 
       'fecha': new FormControl('',Validators.required),
-      'preparador': new FormControl('',Validators.required)
+      'preparador': new FormControl('',Validators.required),
+      'tecnicasUtilizadas': new FormControl('',Validators.required)
     });
 
     console.log(this.formReplica)
@@ -55,7 +56,8 @@ export class ReplicaComponent implements OnInit {
   }
 
   guardarFormulario(){
-    console.log(this.formReplica)
+    console.log(this.formReplica.value)
+
   }
 
   agregarColector(){

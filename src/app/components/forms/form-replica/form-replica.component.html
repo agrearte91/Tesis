@@ -67,20 +67,21 @@
             <label class="col-12 col-form-label">Colector</label>
             <div *ngFor="let colector of formReplica.controls['colector'].controls; let i=index" class="col-md-12" formArrayName="colector">
                 <div class="form-group row">
-                    <div class="form-group col col-9">
+                    <div class="form-group col">
                         <input type="text" class="form-control" placeholder="colector" [formControlName]="i">
                     </div>
                     <div class="form-group col" *ngIf="i>0">
-
                         <button (click)="quitarColector(i)" type="button" class="btn btn-outline-danger">Quitar</button>
-
                     </div>
+
+                    <div class="form-group col" *ngIf="i==0">
+                        <button (click)="agregarColector()" type="button" class="btn btn-primary">agregar</button>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <div class="form-group col">
-            <button (click)="agregarColector()" type="button" class="btn btn-primary">agregar</button>
-        </div>
+
     </div>
 
     <div formGroupName="ubicacion">
@@ -96,25 +97,31 @@
             <div class="form-group col">
 
                 <div class="col-md-12">
-                    <input type="text" class="form-control" placeholder="Nro de estante" formControlName="numEstante">
+                    <input type="number" class="form-control" placeholder="Nro de estante" formControlName="numEstante">
                 </div>
             </div>
             <div class="form-group col">
 
                 <div class="col-md-12">
-                    <input type="text" class="form-control" placeholder="Nro de estanteria" formControlName="numEstanteria">
+                    <input type="number" class="form-control" placeholder="Nro de estanteria" formControlName="numEstanteria">
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <label class="col-1 col-form-label">Preparador</label>
-        <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="preparador" formControlName="preparador">
+    <div *ngIf="true">
+        <div class="form-group">
+            <label class="col col-form-label">Preparador</label>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Nombre del preparador de la pieza/replica" formControlName="preparador">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col col-form-label">Tecnicas Utilizadas</label>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Descripción de las tecnicas aplicadas" formControlName="tecnicasUtilizadas">
+            </div>
         </div>
     </div>
-
     <div class="form-row">
         <button type="submit" class="btn btn-primary col" [disabled]="!formReplica.valid">
             Confirmar
