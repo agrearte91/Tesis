@@ -7,7 +7,7 @@ import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms'
 })
 export class FormReplicaComponent implements OnInit {
 
-  
+  mostrarPreparador=false;
   formReplica:FormGroup;
 
     codigo:null
@@ -45,8 +45,8 @@ export class FormReplicaComponent implements OnInit {
         'numEstanteria': new FormControl('',Validators.required)
       }), 
       'fecha': new FormControl('',Validators.required),
-      'preparador': new FormControl('',Validators.required),
-      'tecnicasUtilizadas': new FormControl('',Validators.required)
+      //'preparador': new FormControl('',Validators.required),
+     // 'tecnicasUtilizadas': new FormControl('',Validators.required)
     });
 
     console.log(this.formReplica)
@@ -65,6 +65,17 @@ export class FormReplicaComponent implements OnInit {
       new FormControl('',Validators.required)
     )
   }
+
+  agregarPreparador(){
+    this.formReplica.addControl('preparador', new FormControl('',Validators.required));
+    this.formReplica.addControl('tecnicasUtilizadas', new FormControl('',Validators.required));
+  }
+
+  quitarPreparador(){
+    this.formReplica.removeControl('preparador');
+    this.formReplica.removeControl('tecnicasUtilizadas');
+  }
+
   quitarColector(i){
     const arrayControl=<FormArray>this.formReplica.controls['colector'];
     arrayControl.removeAt(i);

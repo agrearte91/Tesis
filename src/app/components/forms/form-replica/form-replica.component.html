@@ -4,16 +4,24 @@
 
 <form [formGroup]="formReplica" (ngSubmit)="guardarFormulario()">
     <div class="form-row">
+
         <div class="form-group col">
             <label class="col-1 col-form-label">Codigo</label>
-            <div class="col-md-12">
-                <input type="text" class="form-control" placeholder="Codigo" formControlName="codigo">
+            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['codigo'].valid}">
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['codigo'].touched && !formReplica.controls['codigo'].valid}" placeholder="Codigo" formControlName="codigo">
+                <div class="invalid-feedback" *ngIf="formReplica.controls['codigo'].errors?.required">
+                    Este campo es obligatorio
+                </div>
             </div>
         </div>
+
         <div class="form-group col">
             <label class="col-1 col-form-label">Taxon</label>
-            <div class="col-md-12">
-                <input type="text" class="form-control" placeholder="taxon" formControlName="taxon">
+            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['taxon'].valid}">
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['taxon'].touched && !formReplica.controls['taxon'].valid}" placeholder="taxon" formControlName="taxon">
+                <div class="invalid-feedback" *ngIf="formReplica.controls['taxon'].errors?.required">
+                    Este campo es obligatorio
+                </div>
             </div>
         </div>
     </div>
@@ -21,11 +29,11 @@
     <div class="form-group">
         <label class="col-1 col-form-label">Descripción</label>
         <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['descripcion'].valid}">
-            <input type="text" class="form-control is-invalid" placeholder="breve descripción de la réplica" formControlName="descripcion">
-            <div class="invalid-feedback" *ngIf="formReplica.get('descripcion').errors?.minlength">
+            <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['descripcion'].touched && !formReplica.controls['descripcion'].valid}" placeholder="breve descripción de la réplica" formControlName="descripcion">
+            <div class="invalid-feedback" *ngIf="formReplica.controls['descripcion'].errors?.minlength">
                 La descripcion debe tener una logitud minima de 5 caracteres
             </div>
-            <div class="invalid-feedback" *ngIf="formReplica.get('descripcion').errors?.required">
+            <div class="invalid-feedback" *ngIf="formReplica.controls['descripcion'].errors?.required">
                 Este campo es obligatorio
             </div>
         </div>
@@ -75,7 +83,7 @@
                     </div>
 
                     <div class="form-group col" *ngIf="i==0">
-                        <button (click)="agregarColector()" type="button" class="btn btn-primary">agregar</button>
+                        <button (click)="agregarColector()" type="button" class="btn btn-outline-primary">agregar</button>
                     </div>
 
                 </div>
@@ -108,7 +116,13 @@
             </div>
         </div>
     </div>
-    <div *ngIf="true">
+
+    <div class="form-group col">
+        <button *ngIf="!mostrarPreparador" (click)="agregarPreparador(); mostrarPreparador=!mostrarPreparador" type="button" class="btn btn-outline-primary">Agregar Preparador</button>
+        <button *ngIf="mostrarPreparador" (click)="quitarPreparador(); mostrarPreparador=!mostrarPreparador" type="button" class="btn btn-outline-primary">Quitar Preparador</button>
+    </div>
+
+    <div *ngIf="mostrarPreparador">
         <div class="form-group">
             <label class="col col-form-label">Preparador</label>
             <div class="col-md-12">
