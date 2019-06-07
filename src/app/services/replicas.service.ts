@@ -75,5 +75,8 @@ export class ReplicasService {
     return this.replicas[id];
    }
 
+   agregarReplica(replica:any){
+     this.replicas.push(replica);
+   }
 
 }

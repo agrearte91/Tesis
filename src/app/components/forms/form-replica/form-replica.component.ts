@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms'
+import { ReplicasService } from '../../../services/replicas.service';
 @Component({
   selector: 'app-form-replica',
   templateUrl: './form-replica.component.html',
@@ -27,7 +28,7 @@ export class FormReplicaComponent implements OnInit {
 
 
 
-  constructor() {
+  constructor(private _replicaService:ReplicasService) {
     console.log("estoy aca");
     this.formReplica = new FormGroup({
       'codigo': new FormControl('',Validators.required),
@@ -35,18 +36,16 @@ export class FormReplicaComponent implements OnInit {
       'descripcion': new FormControl('',[Validators.required,Validators.minLength(5)]),
       'localidad': new FormControl('',Validators.required),
       'unidad': new FormControl('',Validators.required),
-      'edad': new FormControl('',Validators.required),
+      'edad': new FormControl('',[Validators.required, Validators.min(1)]),
       'colector': new FormArray([
         new FormControl('',Validators.required)
       ]),
       'ubicacion': new FormGroup({
-        'codRespositorio': new FormControl('',Validators.required),
-        'numEstante': new FormControl('',[Validators.required]),
-        'numEstanteria': new FormControl('',Validators.required)
+        'codRepositorio': new FormControl('',Validators.required),
+        'numEstante': new FormControl('',[Validators.required,Validators.min(1)]),
+        'numEstanteria': new FormControl('',[Validators.required,Validators.min(1)])
       }), 
-      'fecha': new FormControl('',Validators.required),
-      //'preparador': new FormControl('',Validators.required),
-     // 'tecnicasUtilizadas': new FormControl('',Validators.required)
+      'fecha': new FormControl('',Validators.required)
     });
 
     console.log(this.formReplica)
@@ -56,6 +55,7 @@ export class FormReplicaComponent implements OnInit {
   }
 
   guardarFormulario(){
+    this._replicaService.agregarReplica(this.formReplica.value);
     console.log(this.formReplica.value)
 
   }
