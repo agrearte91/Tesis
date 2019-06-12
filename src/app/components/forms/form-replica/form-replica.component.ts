@@ -37,7 +37,7 @@ export class FormReplicaComponent implements OnInit {
       'localidad': new FormControl('',Validators.required),
       'unidad': new FormControl('',Validators.required),
       'edad': new FormControl('',[Validators.required, Validators.min(1)]),
-      'colector': new FormArray([
+      'colectores': new FormArray([
         new FormControl('',Validators.required)
       ]),
       'ubicacion': new FormGroup({

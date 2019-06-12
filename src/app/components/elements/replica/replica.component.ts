@@ -9,7 +9,7 @@ import { ReplicasService } from '../../../services/replicas.service';
 })
 export class ReplicaComponent implements OnInit {
 
-  replica = {};
+  replica:Replica;
 
   constructor(private route:ActivatedRoute, private _replicaService:ReplicasService) {
     this.route.params.subscribe(params => {
@@ -20,4 +20,24 @@ export class ReplicaComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  
+}
+
+interface Replica {
+  'codigo': string,
+  'taxon': string,
+  'descripcion': string,
+  'localidad': string,
+  'unidad': string,
+  'edad': number,
+  'fecha': Date,
+  'colectores':string[],
+  'ubicacion': {
+    'codRepositorio':string,
+    'numEstante':number,
+    'numEstanteria':number
+  }
+  'preparado'?: string,
+  'tecnicasUtilizadas'?: string
 }

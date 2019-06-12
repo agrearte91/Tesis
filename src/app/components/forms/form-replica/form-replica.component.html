@@ -88,10 +88,10 @@
 
         <div class="form-group col ">
             <label class="col-12 col-form-label ">Colector</label>
-            <div *ngFor="let colector of formReplica.controls[ 'colector'].controls; let i=index " class="col-md-12 " formArrayName="colector">
+            <div *ngFor="let colector of formReplica.controls[ 'colectores'].controls; let i=index " class="col-md-12 " formArrayName="colectores">
                 <div class="form-group row ">
                     <div class="form-group col ">
-                        <input type="text " class="form-control " placeholder="colector " [formControlName]="i ">
+                        <input type="text " class="form-control " placeholder="colectores " [formControlName]="i ">
                     </div>
                     <div class="form-group col " *ngIf="i>0">
                         <button (click)="quitarColector(i)" type="button" class="btn btn-outline-danger">Quitar</button>

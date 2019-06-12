@@ -8,7 +8,17 @@ export class ReplicasService {
   private replicas: any[] = [
     {'codigo':'codigo 1',
      'taxon':'taxon 1',
-     'descripcion':"descripcion 1"
+     'descripcion':"descripcion 1",
+     'localidad':'localidad 1',
+     'unidad':'unidad 1',
+     'edad': '1',
+     'fecha': '2012-12-12',
+     'colectores':['juan','Antonio','Manolo'],
+     'ubicacion':{
+       'codRepositorio':'repositorio 1',
+       'numEstante':1,
+       'numEstanteria':2
+     }
     },
     {'codigo':'codigo 2',
      'taxon':'taxon 2',
