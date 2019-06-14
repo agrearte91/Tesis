@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms'
 import { ReplicasService } from '../../../services/replicas.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-form-replica',
   templateUrl: './form-replica.component.html',
@@ -28,7 +29,7 @@ export class FormReplicaComponent implements OnInit {
 
 
 
-  constructor(private _replicaService:ReplicasService) {
+  constructor(private _replicaService:ReplicasService, private routes: Router) {
     console.log("estoy aca");
     this.formReplica = new FormGroup({
       'codigo': new FormControl('',Validators.required),
@@ -56,12 +57,13 @@ export class FormReplicaComponent implements OnInit {
 
   guardarFormulario(){
     this._replicaService.agregarReplica(this.formReplica.value);
-    console.log(this.formReplica.value)
+    console.log(this.formReplica.value);
+    this.routes.navigate(['/home-replica']);
 
   }
 
   agregarColector(){
-    (<FormArray>this.formReplica.controls['colector']).push(
+    (<FormArray>this.formReplica.controls['colectores']).push(
       new FormControl('',Validators.required)
     )
   }

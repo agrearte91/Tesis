@@ -21,6 +21,7 @@ import { NgIf } from '@angular/common';
 import { HomeReplicaComponent } from './components/home/home-replica/home-replica.component';
 import { FormReplicaComponent } from './components/forms/form-replica/form-replica.component';
 import { ReplicaComponent } from './components/elements/replica/replica.component';
+import { FormEditReplicaComponent } from './components/forms/form-edit-replica/form-edit-replica.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ReplicaComponent } from './components/elements/replica/replica.componen
     LoanComponent,
     HomeComponent,
     HomeReplicaComponent,
-    FormReplicaComponent
+    FormReplicaComponent,
+    FormEditReplicaComponent
   ],
   imports: [
     BrowserModule,

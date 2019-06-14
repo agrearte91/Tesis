@@ -38,6 +38,6 @@ interface Replica {
     'numEstante':number,
     'numEstanteria':number
   }
-  'preparado'?: string,
+  'preparador'?: string,
   'tecnicasUtilizadas'?: string
 }
