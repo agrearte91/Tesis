@@ -14,7 +14,7 @@ export const ROUTES: Routes = [
     { path: 'home-replica', component: HomeReplicaComponent },
     { path: 'replica/:id', component: ReplicaComponent },
     { path: 'form-replica', component: FormReplicaComponent },
-    { path: 'form-edit-replica/:id', component: FormEditReplicaComponent },
+    { path: 'edit-replica/:id', component: FormEditReplicaComponent },
     { path: 'donacion', component: DonationComponent },
     { path: 'prestamo', component: LoanComponent },
     { path: 'exhibicion', component: ExhibitionComponent },

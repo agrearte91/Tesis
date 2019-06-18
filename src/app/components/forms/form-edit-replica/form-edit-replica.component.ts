@@ -41,21 +41,34 @@ export class FormEditReplicaComponent implements OnInit {
       this.formReplica = new FormGroup({
         'codigo': new FormControl({value: this.replica.codigo, disabled:true},Validators.required),
         'taxon': new FormControl({value: this.replica.taxon, disabled:true},Validators.required),
-        'descripcion': new FormControl('',[Validators.required,Validators.minLength(5)]),
-        'localidad': new FormControl('',Validators.required),
-        'unidad': new FormControl('',Validators.required),
-        'edad': new FormControl('',[Validators.required, Validators.min(1)]),
+        'descripcion': new FormControl(this.replica.descripcion,[Validators.required,Validators.minLength(5)]),
+        'localidad': new FormControl(this.replica.localidad,Validators.required),
+        'unidad': new FormControl(this.replica.unidad,Validators.required),
+        'edad': new FormControl(this.replica.edad,[Validators.required, Validators.min(1)]),
         'colectores': new FormArray([
-          new FormControl('',Validators.required)
+          new FormControl(this.replica.colectores[0],Validators.required)
         ]),
         'ubicacion': new FormGroup({
-          'codRepositorio': new FormControl('',Validators.required),
-          'numEstante': new FormControl('',[Validators.required,Validators.min(1)]),
-          'numEstanteria': new FormControl('',[Validators.required,Validators.min(1)])
+          'codRepositorio': new FormControl(this.replica.ubicacion.codRepositorio,Validators.required),
+          'numEstante': new FormControl(this.replica.ubicacion.numEstante,[Validators.required,Validators.min(1)]),
+          'numEstanteria': new FormControl(this.replica.ubicacion.numEstanteria,[Validators.required,Validators.min(1)])
         }), 
-        'fecha': new FormControl('',Validators.required)
+        'fecha': new FormControl(this.replica.fecha,Validators.required)
       });
-  
+      
+      let cant = this.replica.colectores.length;
+      
+      for (let i =1; i < cant; i++){
+        (<FormArray>this.formReplica.controls['colectores']).push(
+          new FormControl(this.replica.colectores[i],Validators.required))
+      }
+
+      if (this.replica.preparador) {
+        this.mostrarPreparador=true;
+        this.formReplica.addControl('preparador', new FormControl(this.replica.preparador,Validators.required));
+        this.formReplica.addControl('tecnicasUtilizadas', new FormControl(this.replica.tecnicasUtilizadas,Validators.required));
+      }
+      
       console.log(this.formReplica)
      }
 
@@ -67,7 +80,13 @@ export class FormEditReplicaComponent implements OnInit {
     this.routes.navigate(['/home-replica']);
 
   }
-
+  
+  actualizarDatos(){
+    this.route.params.subscribe(params => {
+      this._replicaService.updateReplica(this.formReplica.value,params['id']);
+    })
+  }
+  
   agregarColector(){
     (<FormArray>this.formReplica.controls['colectores']).push(
       new FormControl('',Validators.required)
