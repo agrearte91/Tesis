@@ -8,11 +8,13 @@ import { ExhibitionComponent } from './components/forms/exhibition/exhibition.co
 import { ExchangeComponent } from './components/forms/exchange/exchange.component';
 import { HomeReplicaComponent } from './components/home/home-replica/home-replica.component';
 import { ReplicaComponent } from './components/elements/replica/replica.component';
+import { FormEditReplicaComponent } from './components/forms/form-edit-replica/form-edit-replica.component';
 
 export const ROUTES: Routes = [
     { path: 'home-replica', component: HomeReplicaComponent },
     { path: 'replica/:id', component: ReplicaComponent },
     { path: 'form-replica', component: FormReplicaComponent },
+    { path: 'form-edit-replica/:id', component: FormEditReplicaComponent },
     { path: 'donacion', component: DonationComponent },
     { path: 'prestamo', component: LoanComponent },
     { path: 'exhibicion', component: ExhibitionComponent },

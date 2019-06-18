@@ -79,7 +79,7 @@ export class FormReplicaComponent implements OnInit {
   }
 
   quitarColector(i){
-    const arrayControl=<FormArray>this.formReplica.controls['colector'];
+    const arrayControl=<FormArray>this.formReplica.controls['colectores'];
     arrayControl.removeAt(i);
  
   }

@@ -1,3 +1,169 @@
-<p>
-  form-edit-replica works!
-</p>
+<hr>
+<h4>Alta de Replica</h4>
+<hr>
+
+<form [formGroup]="formReplica" (ngSubmit)="guardarFormulario()">
+    <div class="form-row">
+
+        <div class="form-group col">
+            <label class="col-1 col-form-label">Codigo</label>
+            <div class="col-md-12">
+                <input type="text" class="form-control" formControlName="codigo">
+            </div>
+        </div>
+
+        <div class="form-group col">
+            <label class="col-1 col-form-label">Taxon</label>
+            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['taxon'].valid}">
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['taxon'].touched && !formReplica.controls['taxon'].valid}" placeholder="taxon" formControlName="taxon">
+                <div class="invalid-feedback" *ngIf="formReplica.controls['taxon'].errors?.required">
+                    Campo Obligatorio
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-1 col-form-label">Descripción</label>
+        <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['descripcion'].valid}">
+            <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['descripcion'].touched && !formReplica.controls['descripcion'].valid}" placeholder="breve descripción de la réplica" formControlName="descripcion">
+            <div class="invalid-feedback" *ngIf="formReplica.controls['descripcion'].errors?.minlength">
+                La descripcion debe tener una logitud minima de 5 caracteres
+            </div>
+            <div class="invalid-feedback" *ngIf="formReplica.controls['descripcion'].errors?.required">
+                Campo Obligatorio
+            </div>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label class="col-1 col-form-label">Localidad</label>
+            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['localidad'].valid}">
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['localidad'].touched && !formReplica.controls['localidad'].valid}" placeholder="localidad" formControlName="localidad">
+                <div class="invalid-feedback" *ngIf="formReplica.controls['localidad'].errors?.required">
+                    Campo Obligatorio
+                </div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label class="col-1 col-form-label">Unidad</label>
+            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['unidad'].valid}">
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['unidad'].touched && !formReplica.controls['unidad'].valid}" placeholder="unidad" formControlName="unidad">
+                <div class="invalid-feedback" *ngIf="formReplica.controls['unidad'].errors?.required">
+                    Campo Obligatorio
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col">
+            <label class="col-1 col-form-label">Edad</label>
+            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['edad'].valid}">
+                <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['edad'].touched && !formReplica.controls['edad'].valid}" placeholder=" Edad del fósil expresada en años " formControlName="edad">
+                <div class="invalid-feedback" *ngIf="formReplica.controls['edad'].errors?.min ">
+                    La edad debe superior a 0
+                </div>
+                <div class="invalid-feedback" *ngIf="formReplica.controls['edad'].errors?.required ">
+                    Campo Obligatorio
+                </div>
+            </div>
+        </div>
+        <div class="form-group col ">
+            <label class="col-1 col-form-label ">Fecha</label>
+            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['fecha'].valid}">
+                <input type="date" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['fecha'].touched && !formReplica.controls['fecha'].valid}" placeholder="dd/mm/aaaa" formControlName="fecha">
+                <div class="invalid-feedback" *ngIf="formReplica.controls['fecha'].errors?.required ">
+                    Campo Obligatorio
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row ">
+
+        <div class="form-group col ">
+            <label class="col-12 col-form-label ">Colector</label>
+            <div *ngFor="let colector of formReplica.controls[ 'colectores'].controls; let i=index " class="col-md-12 " formArrayName="colectores">
+                <div class="form-group row ">
+                    <div class="form-group col ">
+                        <input type="text " class="form-control " placeholder="colectores " [formControlName]="i ">
+                    </div>
+                    <div class="form-group col " *ngIf="i>0">
+                        <button (click)="quitarColector(i)" type="button" class="btn btn-outline-danger">Quitar</button>
+                    </div>
+
+                    <div class="form-group col" *ngIf="i==0">
+                        <button (click)="agregarColector()" type="button" class="btn btn-outline-primary">agregar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div formGroupName="ubicacion">
+        <label class="col-12 col-form-label">Ubicación de la Replica</label>
+        <div class="form-group row">
+
+            <div class="form-group col">
+
+                <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['ubicacion'].controls['codRepositorio'].valid}">
+                    <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['ubicacion'].touched && !formReplica.controls['ubicacion'].valid}" placeholder="Codigo de repositorio" formControlName="codRepositorio">
+                    <div class="invalid-feedback" *ngIf="formReplica.controls['ubicacion'].controls['codRepositorio'].errors?.required ">
+                        Campo Obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col" [ngClass]="{'was-validated': formReplica.controls['ubicacion'].controls['numEstante'].valid}">
+
+                <div class="col-md-12">
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['ubicacion'].touched && !formReplica.controls['ubicacion'].valid}" placeholder="Nro de estante" formControlName="numEstante">
+                    <div class="invalid-feedback" *ngIf="formReplica.controls['ubicacion'].controls['numEstante'].errors?.required ">
+                        Campo Obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col" [ngClass]="{'was-validated': formReplica.controls['ubicacion'].controls['numEstanteria'].valid}">
+
+                <div class="col-md-12">
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['ubicacion'].touched && !formReplica.controls['ubicacion'].valid}" placeholder="Nro de estanteria" formControlName="numEstanteria">
+                    <div class="invalid-feedback" *ngIf="formReplica.controls['ubicacion'].controls['numEstante'].errors?.required ">
+                        Campo Obligatorio
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group col">
+        <button *ngIf="!mostrarPreparador" (click)="agregarPreparador(); mostrarPreparador=!mostrarPreparador" type="button" class="btn btn-outline-primary">Agregar Preparador</button>
+        <button *ngIf="mostrarPreparador" (click)="quitarPreparador(); mostrarPreparador=!mostrarPreparador" type="button" class="btn btn-outline-primary">Quitar Preparador</button>
+    </div>
+
+    <div *ngIf="mostrarPreparador">
+        <div class="form-group">
+            <label class="col col-form-label">Preparador</label>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Nombre del preparador de la pieza/replica" formControlName="preparador">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col col-form-label">Tecnicas Utilizadas</label>
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Descripción de las tecnicas aplicadas" formControlName="tecnicasUtilizadas">
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <button type="submit reset" class="btn btn-primary col" [disabled]="!formReplica.valid">
+            Confirmar
+        </button>
+    </div>
+
+
+
+    <hr> {{formReplica.valid}}
+</form>
