@@ -8,14 +8,14 @@
         <div class="form-group col">
             <label class="col-1 col-form-label">Codigo</label>
             <div class="col-md-12">
-                <input type="text" class="form-control" formControlName="codigo">
+                <input type="text" readonly="true" class="form-control" formControlName="codigo">
             </div>
         </div>
 
         <div class="form-group col">
             <label class="col-1 col-form-label">Taxon</label>
-            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['taxon'].valid}">
-                <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['taxon'].touched && !formReplica.controls['taxon'].valid}" placeholder="taxon" formControlName="taxon">
+            <div class="col-md-12">
+                <input type="text" readonly="true" class="form-control" placeholder="taxon" formControlName="taxon">
                 <div class="invalid-feedback" *ngIf="formReplica.controls['taxon'].errors?.required">
                     Campo Obligatorio
                 </div>

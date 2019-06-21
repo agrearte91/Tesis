@@ -39,8 +39,8 @@ export class FormEditReplicaComponent implements OnInit {
       
 
       this.formReplica = new FormGroup({
-        'codigo': new FormControl({value: this.replica.codigo, disabled:true},Validators.required),
-        'taxon': new FormControl({value: this.replica.taxon, disabled:true},Validators.required),
+        'codigo': new FormControl( this.replica.codigo,Validators.required),
+        'taxon': new FormControl(this.replica.taxon,Validators.required),
         'descripcion': new FormControl(this.replica.descripcion,[Validators.required,Validators.minLength(5)]),
         'localidad': new FormControl(this.replica.localidad,Validators.required),
         'unidad': new FormControl(this.replica.unidad,Validators.required),
@@ -82,8 +82,9 @@ export class FormEditReplicaComponent implements OnInit {
   }
   
   actualizarDatos(){
-    this.route.params.subscribe(params => {
+      this.route.params.subscribe(params => {
       this._replicaService.updateReplica(this.formReplica.value,params['id']);
+      this.routes.navigate(['/home-replica']);
     })
   }
   
