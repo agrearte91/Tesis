@@ -36,7 +36,12 @@ export class FormReplicaComponent implements OnInit {
       'taxon': new FormControl('',Validators.required),
       'descripcion': new FormControl('',[Validators.required,Validators.minLength(5)]),
       'localidad': new FormControl('',Validators.required),
-      'unidad': new FormControl('',Validators.required),
+      
+      'dimensiones' : new FormGroup({
+        'unidadDeMedida' : new FormControl('',Validators.required),
+        'alto' : new FormControl('', Validators.required),
+        'ancho' : new FormControl('', Validators.required)
+      }),
       'edad': new FormControl('',[Validators.required, Validators.min(1)]),
       'colectores': new FormArray([
         new FormControl('',Validators.required)

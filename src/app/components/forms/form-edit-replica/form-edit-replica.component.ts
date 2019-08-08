@@ -43,7 +43,11 @@ export class FormEditReplicaComponent implements OnInit {
         'taxon': new FormControl(this.replica.taxon,Validators.required),
         'descripcion': new FormControl(this.replica.descripcion,[Validators.required,Validators.minLength(5)]),
         'localidad': new FormControl(this.replica.localidad,Validators.required),
-        'unidad': new FormControl(this.replica.unidad,Validators.required),
+        'dimensiones' : new FormGroup({
+          'unidadDeMedida' : new FormControl(this.replica.dimensiones.unidadDeMedida,Validators.required),
+          'alto' : new FormControl(this.replica.dimensiones.alto, Validators.required),
+          'ancho' : new FormControl(this.replica.dimensiones.ancho, Validators.required)
+        }),
         'edad': new FormControl(this.replica.edad,[Validators.required, Validators.min(1)]),
         'colectores': new FormArray([
           new FormControl(this.replica.colectores[0],Validators.required)
@@ -118,7 +122,11 @@ interface Replica {
   'taxon': string,
   'descripcion': string,
   'localidad': string,
-  'unidad': string,
+  'dimensiones' : {
+    'unidadDeMedida': string,
+    'alto': number,
+    'ancho' : number
+  },
   'edad': number,
   'fecha': Date,
   'colectores':string[],
