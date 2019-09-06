@@ -12,7 +12,7 @@ import { FormEditReplicaComponent } from './components/forms/form-edit-replica/f
 
 export const ROUTES: Routes = [
     { path: 'home-replica', component: HomeReplicaComponent },
-    { path: 'replica/:id', component: ReplicaComponent },
+    { path: 'replica/:unCodigo', component: ReplicaComponent },
     { path: 'form-replica', component: FormReplicaComponent },
     { path: 'edit-replica/:id', component: FormEditReplicaComponent },
     { path: 'donacion', component: DonationComponent },

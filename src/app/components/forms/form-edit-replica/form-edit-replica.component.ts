@@ -12,7 +12,7 @@ export class FormEditReplicaComponent implements OnInit {
 
   mostrarPreparador=false;
 
-  replica:Replica;
+  replica:any;
 
   formReplica:FormGroup;
 
@@ -40,13 +40,17 @@ export class FormEditReplicaComponent implements OnInit {
 
       this.formReplica = new FormGroup({
         'codigo': new FormControl( this.replica.codigo,Validators.required),
-        'taxon': new FormControl(this.replica.taxon,Validators.required),
+        'material': new FormControl(this.replica.taxon,Validators.required),
         'descripcion': new FormControl(this.replica.descripcion,[Validators.required,Validators.minLength(5)]),
         'localidad': new FormControl(this.replica.localidad,Validators.required),
-        'dimensiones' : new FormGroup({
+        
+        'medidasReplica' : new FormGroup({
           'unidadDeMedida' : new FormControl(this.replica.dimensiones.unidadDeMedida,Validators.required),
-          'alto' : new FormControl(this.replica.dimensiones.alto, Validators.required),
-          'ancho' : new FormControl(this.replica.dimensiones.ancho, Validators.required)
+          'ancho' : new FormControl(this.replica.dimensiones.alto, Validators.required),
+          'largo' : new FormControl(this.replica.dimensiones.ancho, Validators.required),
+          'alto' : new FormControl(this.replica.dimensiones.ancho, Validators.required),
+          'diametro' : new FormControl(this.replica.dimensiones.ancho, Validators.required),
+          'circunferencia' : new FormControl(this.replica.dimensiones.ancho)
         }),
         'edad': new FormControl(this.replica.edad,[Validators.required, Validators.min(1)]),
         'colectores': new FormArray([
@@ -57,7 +61,7 @@ export class FormEditReplicaComponent implements OnInit {
           'numEstante': new FormControl(this.replica.ubicacion.numEstante,[Validators.required,Validators.min(1)]),
           'numEstanteria': new FormControl(this.replica.ubicacion.numEstanteria,[Validators.required,Validators.min(1)])
         }), 
-        'fecha': new FormControl(this.replica.fecha,Validators.required)
+        'fechaIngreso': new FormControl(this.replica.fecha,Validators.required)
       });
       
       let cant = this.replica.colectores.length;
@@ -79,8 +83,9 @@ export class FormEditReplicaComponent implements OnInit {
   ngOnInit() {
   }
   guardarFormulario(){
-    this._replicaService.agregarReplica(this.formReplica.value);
-    console.log(this.formReplica.value);
+    this._replicaService.agregarReplica(this.formReplica.value)
+      .subscribe(nuevaReplica => { console.log("guardar Formulario"); console.log(nuevaReplica);});
+    //console.log(this.formReplica.value);
     this.routes.navigate(['/home-replica']);
 
   }
@@ -119,13 +124,16 @@ export class FormEditReplicaComponent implements OnInit {
 
 interface Replica {
   'codigo': string,
-  'taxon': string,
+  'material': string,
   'descripcion': string,
   'localidad': string,
   'dimensiones' : {
     'unidadDeMedida': string,
-    'alto': number,
-    'ancho' : number
+    'ancho': number,
+    'largo' : number,
+    'alto' : number,
+    'diametro' : number,
+    'circunferencia' : number
   },
   'edad': number,
   'fecha': Date,

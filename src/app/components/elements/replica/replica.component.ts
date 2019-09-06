@@ -9,12 +9,19 @@ import { ReplicasService } from '../../../services/replicas.service';
 })
 export class ReplicaComponent implements OnInit {
 
-  replica:Replica;
+  replica: any;
 
   constructor(private route:ActivatedRoute, private _replicaService:ReplicasService) {
     this.route.params.subscribe(params => {
-      this.replica = this._replicaService.getReplica(params['id']);
-    })    
+      this.getReplica(params['unCodigo']);
+    })
+   }
+
+   getReplica(unCodigo: string) {
+    this._replicaService.getReplica(unCodigo)
+          .subscribe (replicaEncontrada => {
+            console.log(replicaEncontrada);
+            this.replica = replicaEncontrada;})
    }
 
   ngOnInit() {
@@ -26,13 +33,20 @@ export class ReplicaComponent implements OnInit {
 
 interface Replica {
   'codigo': string,
-  'taxon': string,
+  'material': string,
   'descripcion': string,
   'localidad': string,
-  'unidad': string,
+  'medidasReplica': {
+    'alto':number,
+    'ancho':number,
+    'largo':number,
+    'diametro'?:number,
+    'circunferencia'?:number,
+    'unidadDeMedida'?:string
+  },
   'edad': number,
-  'fecha': Date,
-  'colectores':string[],
+  'fechaIngreso': Date,
+  'colectores': Colector[],
   'ubicacion': {
     'codRepositorio':string,
     'numEstante':number,
@@ -40,4 +54,10 @@ interface Replica {
   }
   'preparador'?: string,
   'tecnicasUtilizadas'?: string
+}
+
+interface Colector{
+  'nombres': string,
+  'apellidos': string,
+  'dni': string
 }

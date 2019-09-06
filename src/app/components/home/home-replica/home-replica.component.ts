@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReplicasService } from 'src/app/services/replicas.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home-replica',
@@ -8,17 +9,17 @@ import { ReplicasService } from 'src/app/services/replicas.service';
 })
 export class HomeReplicaComponent implements OnInit {
   
-  replicas: any [] = [];
+  replicas: any;
   
   dtOptions: DataTables.Settings = {};
 
   constructor(private _replicasService:ReplicasService) { }
 
   ngOnInit() {
-    this.dtOptions ={
-      
-    }
-    this.replicas= this._replicasService.getReplicas();
+      this._replicasService.getReplicas()
+            .subscribe (replicasEncontrada => {
+              console.log(replicasEncontrada);
+              this.replicas = replicasEncontrada;})
   }
 
 }

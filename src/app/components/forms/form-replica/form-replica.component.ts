@@ -11,6 +11,7 @@ export class FormReplicaComponent implements OnInit {
 
   mostrarPreparador=false;
   formReplica:FormGroup;
+  personas:[] = [];
 
     codigo:null
     taxon:null
@@ -33,14 +34,17 @@ export class FormReplicaComponent implements OnInit {
     console.log("estoy aca");
     this.formReplica = new FormGroup({
       'codigo': new FormControl('',Validators.required),
-      'taxon': new FormControl('',Validators.required),
+      'material': new FormControl('',Validators.required),
       'descripcion': new FormControl('',[Validators.required,Validators.minLength(5)]),
       'localidad': new FormControl('',Validators.required),
       
-      'dimensiones' : new FormGroup({
+      'medidasReplica' : new FormGroup({
         'unidadDeMedida' : new FormControl('',Validators.required),
+        'ancho' : new FormControl('', Validators.required),
+        'largo' : new FormControl('', Validators.required),
         'alto' : new FormControl('', Validators.required),
-        'ancho' : new FormControl('', Validators.required)
+        'diametro' : new FormControl('', Validators.required),
+        'circunferencia' : new FormControl('',)
       }),
       'edad': new FormControl('',[Validators.required, Validators.min(1)]),
       'colectores': new FormArray([
@@ -51,7 +55,7 @@ export class FormReplicaComponent implements OnInit {
         'numEstante': new FormControl('',[Validators.required,Validators.min(1)]),
         'numEstanteria': new FormControl('',[Validators.required,Validators.min(1)])
       }), 
-      'fecha': new FormControl('',Validators.required)
+      'fechaIngreso': new FormControl('',Validators.required)
     });
 
     console.log(this.formReplica)
@@ -61,8 +65,21 @@ export class FormReplicaComponent implements OnInit {
   }
 
   guardarFormulario(){
-    this._replicaService.agregarReplica(this.formReplica.value);
-    console.log(this.formReplica.value);
+    let cantColectores = this.formReplica.value.colectores.length
+    for (let i=0; i < cantColectores; i++){
+
+      let colec = this.formReplica.value.colectores[i].split(' ')
+
+      this.formReplica.value.colectores[i]=colec[colec.length-1]
+      console.log( this.formReplica.value.colectores[i])
+    }
+    
+    
+    
+    this._replicaService.agregarReplica(this.formReplica.value)
+      .subscribe(nuevaReplica => {
+        console.log(nuevaReplica);
+      });
     this.routes.navigate(['/home-replica']);
 
   }
@@ -87,5 +104,13 @@ export class FormReplicaComponent implements OnInit {
     const arrayControl=<FormArray>this.formReplica.controls['colectores'];
     arrayControl.removeAt(i);
  
+  }
+  
+  buscarPersona(termino){
+    this._replicaService.getPersonasTermino(termino)
+      .subscribe(personas => {
+        console.log(personas);
+        this.personas = personas;
+      })
   }
 }

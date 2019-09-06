@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -43,7 +44,8 @@ import { FormEditReplicaComponent } from './components/forms/form-edit-replica/f
     FormsModule,
     ReactiveFormsModule,
     DataTablesModule,
-    RouterModule.forRoot(ROUTES, {useHash:true})
+    RouterModule.forRoot(ROUTES, {useHash:true}),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
