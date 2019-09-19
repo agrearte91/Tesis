@@ -22,7 +22,10 @@ import { HomeReplicaComponent } from './components/home/home-replica/home-replic
 import { FormReplicaComponent } from './components/forms/form-replica/form-replica.component';
 import { ReplicaComponent } from './components/elements/replica/replica.component';
 import { FormEditReplicaComponent } from './components/forms/form-edit-replica/form-edit-replica.component';
-
+import { PiezaComponent } from './components/elements/pieza/pieza.component';
+import { FormEditPiezaComponent } from './components/forms/form-edit-pieza/form-edit-pieza.component';
+import { FormPiezaComponent } from './components/forms/form-pieza/form-pieza.component';
+import { HomePiezaComponent } from './components/home/home-pieza/home-pieza.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,11 @@ import { FormEditReplicaComponent } from './components/forms/form-edit-replica/f
     HomeComponent,
     HomeReplicaComponent,
     FormReplicaComponent,
-    FormEditReplicaComponent
+    FormEditReplicaComponent,
+    PiezaComponent,
+    FormEditPiezaComponent,
+    FormPiezaComponent,
+    HomePiezaComponent
   ],
   imports: [
     BrowserModule,

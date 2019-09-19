@@ -9,6 +9,10 @@ import { ExchangeComponent } from './components/forms/exchange/exchange.componen
 import { HomeReplicaComponent } from './components/home/home-replica/home-replica.component';
 import { ReplicaComponent } from './components/elements/replica/replica.component';
 import { FormEditReplicaComponent } from './components/forms/form-edit-replica/form-edit-replica.component';
+import { HomePiezaComponent } from './components/home/home-pieza/home-pieza.component';
+import { PiezaComponent } from './components/elements/pieza/pieza.component';
+import { FormPiezaComponent } from './components/forms/form-pieza/form-pieza.component';
+import { FormEditPiezaComponent} from './components/forms/form-edit-pieza/form-edit-pieza.component';
 
 export const ROUTES: Routes = [
     { path: 'home-replica', component: HomeReplicaComponent },
@@ -19,6 +23,10 @@ export const ROUTES: Routes = [
     { path: 'prestamo', component: LoanComponent },
     { path: 'exhibicion', component: ExhibitionComponent },
     { path: 'cange', component: ExchangeComponent },
-    { path: '**', pathMatch: 'full', redirectTo: 'replica' }
+    { path: '**', pathMatch: 'full', redirectTo: 'replica' },
+    { path: 'home-pieza', component: HomePiezaComponent },
+    { path: 'pieza/:id', component: PiezaComponent },
+    { path: 'form-pieza', component: FormPiezaComponent },
+    { path: 'edit-pieza/:id', component: FormEditPiezaComponent }
 ];
 
