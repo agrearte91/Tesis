@@ -1,0 +1,45 @@
+<div class="container">
+    <form *ngIf="formDonacion" [formGroup]="formDonacion">
+
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label class="col-6 col-form-label">Tipo de Donacion</label>
+                <div class="col-12">
+                    <button (click)="recibida=true" class="btn btn-outline-primary btn-block btn-sm">Recibir</button>
+                    <button (click)="recibida=false" class="btn btn-outline-primary btn-block btn-sm">Realizar</button>
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <label class="col-6 col-form-label ">Fecha de Donacion</label>
+                <div class="col-md-12" [ngClass]="{'was-validated': formDonacion.controls['fecha'].valid}">
+                    <input type="date" class="form-control" [ngClass]="{'is-invalid': formDonacion.controls['fecha'].touched && !formDonacion.controls['fecha'].valid}" placeholder="dd/mm/aaaa" formControlName="fecha">
+                    <div class="invalid-feedback" *ngIf="formDonacion.controls['fecha'].errors?.required ">
+                        Campo Obligatorio
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+            <label class="col-1 col-form-label">Descripción</label>
+            <div class="col-md-12" [ngClass]="{'was-validated': formDonacion.controls['descripcion'].valid}">
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': formDonacion.controls['descripcion'].touched && !formDonacion.controls['descripcion'].valid}" placeholder="breve descripción de la Donacion" formControlName="descripcion">
+                <div class="invalid-feedback" *ngIf="formDonacion.controls['descripcion'].errors?.minlength">
+                    La descripcion debe tener una logitud minima de 5 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="formDonacion.controls['descripcion'].errors?.required">
+                    Campo Obligatorio
+                </div>
+            </div>
+
+        </div>
+        {{recibida}}
+    </form>
+    <div *ngIf="recibida">
+        <app-form-replica></app-form-replica>
+    </div>
+
+    <div *ngIf="!recibida">
+        Hola como estas
+    </div>
+</div>

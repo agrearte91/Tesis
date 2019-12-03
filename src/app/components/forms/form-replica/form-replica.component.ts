@@ -67,15 +67,9 @@ export class FormReplicaComponent implements OnInit {
   guardarFormulario(){
     let cantColectores = this.formReplica.value.colectores.length
     for (let i=0; i < cantColectores; i++){
-
       let colec = this.formReplica.value.colectores[i].split(' ')
-
       this.formReplica.value.colectores[i]=colec[colec.length-1]
-      console.log( this.formReplica.value.colectores[i])
     }
-    
-    
-    
     this._replicaService.agregarReplica(this.formReplica.value)
       .subscribe(nuevaReplica => {
         console.log(nuevaReplica);

@@ -11,89 +11,79 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class FormEditReplicaComponent implements OnInit {
 
   mostrarPreparador=false;
-
+  personas:any;
   replica:any;
-
   formReplica:FormGroup;
 
-    codigo:null
-    taxon:null
-    descripcion:null
-    localidad:null
-    unidad:null
-    edad:null
-    colector:any[]
-    ubicacion: {
-      codRepositorio: null,
-      numEstante: null,
-      numEstanteria: null
-    }
-    fecha:null
-    preparador:null
-
     constructor(private _replicaService:ReplicasService, private routes: Router, private route:ActivatedRoute) {
-      
+
       this.route.params.subscribe(params => {
-        this.replica = this._replicaService.getReplica(params['id']);
+        this._replicaService.getReplica(params['id'])
+          .subscribe(instancia => {
+            this.replica = instancia;
+            console.log(this.replica)
+
+            this.formReplica = new FormGroup({
+              'codigo': new FormControl( this.replica.codigo,Validators.required),
+              'material': new FormControl(this.replica.material,Validators.required),
+              'descripcion': new FormControl(this.replica.descripcion,[Validators.required,Validators.minLength(5)]),
+              'localidad': new FormControl(this.replica.localidad,Validators.required),
+              'medidasReplica' : new FormGroup({
+                'unidadDeMedida' : new FormControl(this.replica.medidasReplica.unidadDeMedida,Validators.required),
+                'ancho' : new FormControl(this.replica.medidasReplica.alto, Validators.required),
+                'largo' : new FormControl(this.replica.medidasReplica.largo, Validators.required),
+                'alto' : new FormControl(this.replica.medidasReplica.alto, Validators.required),
+                'diametro' : new FormControl(this.replica.medidasReplica.diametro, Validators.required),
+                'circunferencia' : new FormControl(this.replica.medidasReplica.circunferencia)
+              }),
+              'edad': new FormControl(this.replica.edad,[Validators.required, Validators.min(1)]),
+              'colectores': new FormArray([
+                new FormControl(this.replica.colectores[0].nombres+' '+this.replica.colectores[0].apellidos+' '+this.replica.colectores[0]._id,Validators .required)
+              ]),
+              'ubicacion': new FormGroup({
+                'codRepositorio': new FormControl(this.replica.ubicacion.codRepositorio,Validators.required),
+                'numEstante': new FormControl(this.replica.ubicacion.numEstante,[Validators.required,Validators.min(1)]),
+                'numEstanteria': new FormControl(this.replica.ubicacion.numEstanteria,[Validators.required,Validators.min(1)])
+              }), 
+              'fechaIngreso': new FormControl(this.replica.fechaIngreso.substring(0,10),Validators.required)
+            });
+            let cant = this.replica.colectores.length;
+            
+            for (let i =1; i < cant; i++){
+              (<FormArray>this.formReplica.controls['colectores']).push(
+                new FormControl(this.replica.colectores[i].nombres+' '+this.replica.colectores[i].apellidos+' '+this.replica.colectores[i]._id,Validators.required))
+            }
+      
+            if (this.replica.preparador) {
+              this.mostrarPreparador=true;
+              this.formReplica.addControl('preparador', new FormControl(this.replica.preparador,Validators.required));
+              this.formReplica.addControl('tecnicasUtilizadas', new FormControl(this.replica.tecnicasUtilizadas,Validators.required));
+            }
+          })
+
       })
-      
 
-      this.formReplica = new FormGroup({
-        'codigo': new FormControl( this.replica.codigo,Validators.required),
-        'material': new FormControl(this.replica.taxon,Validators.required),
-        'descripcion': new FormControl(this.replica.descripcion,[Validators.required,Validators.minLength(5)]),
-        'localidad': new FormControl(this.replica.localidad,Validators.required),
-        
-        'medidasReplica' : new FormGroup({
-          'unidadDeMedida' : new FormControl(this.replica.dimensiones.unidadDeMedida,Validators.required),
-          'ancho' : new FormControl(this.replica.dimensiones.alto, Validators.required),
-          'largo' : new FormControl(this.replica.dimensiones.ancho, Validators.required),
-          'alto' : new FormControl(this.replica.dimensiones.ancho, Validators.required),
-          'diametro' : new FormControl(this.replica.dimensiones.ancho, Validators.required),
-          'circunferencia' : new FormControl(this.replica.dimensiones.ancho)
-        }),
-        'edad': new FormControl(this.replica.edad,[Validators.required, Validators.min(1)]),
-        'colectores': new FormArray([
-          new FormControl(this.replica.colectores[0],Validators.required)
-        ]),
-        'ubicacion': new FormGroup({
-          'codRepositorio': new FormControl(this.replica.ubicacion.codRepositorio,Validators.required),
-          'numEstante': new FormControl(this.replica.ubicacion.numEstante,[Validators.required,Validators.min(1)]),
-          'numEstanteria': new FormControl(this.replica.ubicacion.numEstanteria,[Validators.required,Validators.min(1)])
-        }), 
-        'fechaIngreso': new FormControl(this.replica.fecha,Validators.required)
-      });
-      
-      let cant = this.replica.colectores.length;
-      
-      for (let i =1; i < cant; i++){
-        (<FormArray>this.formReplica.controls['colectores']).push(
-          new FormControl(this.replica.colectores[i],Validators.required))
-      }
-
-      if (this.replica.preparador) {
-        this.mostrarPreparador=true;
-        this.formReplica.addControl('preparador', new FormControl(this.replica.preparador,Validators.required));
-        this.formReplica.addControl('tecnicasUtilizadas', new FormControl(this.replica.tecnicasUtilizadas,Validators.required));
-      }
-      
-      console.log(this.formReplica)
      }
 
+     
   ngOnInit() {
-  }
-  guardarFormulario(){
-    this._replicaService.agregarReplica(this.formReplica.value)
-      .subscribe(nuevaReplica => { console.log("guardar Formulario"); console.log(nuevaReplica);});
-    //console.log(this.formReplica.value);
-    this.routes.navigate(['/home-replica']);
 
   }
-  
+
   actualizarDatos(){
-      this.route.params.subscribe(params => {
-      this._replicaService.updateReplica(this.formReplica.value,params['id']);
-      this.routes.navigate(['/home-replica']);
+    let cantColectores = this.formReplica.value.colectores.length
+    for (let i=0; i < cantColectores; i++){
+      let colec = this.formReplica.value.colectores[i].split(' ')
+      this.formReplica.value.colectores[i]=colec[colec.length-1]
+    }
+    this.route.params.subscribe(params => {
+        this._replicaService.updateReplica(this.formReplica.value,params['id'])
+          .subscribe(replicaActualizada => {
+          console.log(this.formReplica.value)
+          console.log(replicaActualizada);
+          this.routes.navigate(['/home-replica']);
+        })
+
     })
   }
   
@@ -119,30 +109,13 @@ export class FormEditReplicaComponent implements OnInit {
  
   }
 
-  
-}
-
-interface Replica {
-  'codigo': string,
-  'material': string,
-  'descripcion': string,
-  'localidad': string,
-  'dimensiones' : {
-    'unidadDeMedida': string,
-    'ancho': number,
-    'largo' : number,
-    'alto' : number,
-    'diametro' : number,
-    'circunferencia' : number
-  },
-  'edad': number,
-  'fecha': Date,
-  'colectores':string[],
-  'ubicacion': {
-    'codRepositorio':string,
-    'numEstante':number,
-    'numEstanteria':number
+  buscarPersona(termino){
+    this._replicaService.getPersonasTermino(termino)
+      .subscribe(personas => {
+        console.log(personas);
+        this.personas = personas;
+      })
   }
-  'preparador'?: string,
-  'tecnicasUtilizadas'?: string
+
+  
 }

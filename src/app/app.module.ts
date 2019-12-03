@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 import { ExhibitionComponent } from './components/forms/exhibition/exhibition.component';
-import { ExchangeComponent } from './components/forms/exchange/exchange.component';
-import { DonationComponent } from './components/forms/donation/donation.component';
 import { LoanComponent } from './components/forms/loan/loan.component';
 import { HomeComponent } from './components/home/home.component';
 import { DataTablesModule } from 'angular-datatables';
@@ -23,6 +21,14 @@ import { HomeReplicaComponent } from './components/home/home-replica/home-replic
 import { FormReplicaComponent } from './components/forms/form-replica/form-replica.component';
 import { ReplicaComponent } from './components/elements/replica/replica.component';
 import { FormEditReplicaComponent } from './components/forms/form-edit-replica/form-edit-replica.component';
+import { HomeCanjeComponent } from './components/home/home-canje/home-canje.component';
+import { HomeDonacionComponent } from './components/home/home-donacion/home-donacion.component';
+import { CanjeComponent } from './components/elements/canje/canje.component';
+import { FormCanjeComponent } from './components/forms/form-canje/form-canje.component';
+import { FormDonacionComponent } from './components/forms/form-donacion/form-donacion.component';
+import { DonacionComponent } from './components/elements/donacion/donacion.component';
+import { FormEditDonacionComponent } from './components/forms/form-edit-donacion/form-edit-donacion.component';
+import { FormEditCanjeComponent } from './components/forms/form-edit-canje/form-edit-canje.component';
 
 
 @NgModule({
@@ -31,13 +37,19 @@ import { FormEditReplicaComponent } from './components/forms/form-edit-replica/f
     NavbarComponent,
     ReplicaComponent,
     ExhibitionComponent,
-    ExchangeComponent,
-    DonationComponent,
     LoanComponent,
     HomeComponent,
     HomeReplicaComponent,
     FormReplicaComponent,
-    FormEditReplicaComponent
+    FormEditReplicaComponent,
+    HomeCanjeComponent,
+    HomeDonacionComponent,
+    CanjeComponent,
+    FormCanjeComponent,
+    FormDonacionComponent,
+    DonacionComponent,
+    FormEditDonacionComponent,
+    FormEditCanjeComponent
   ],
   imports: [
     BrowserModule,

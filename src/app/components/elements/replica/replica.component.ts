@@ -9,7 +9,10 @@ import { ReplicasService } from '../../../services/replicas.service';
 })
 export class ReplicaComponent implements OnInit {
 
-  replica: any;
+  replica: Replica;
+  colectores:any;
+  preparador:any;
+  material;
 
   constructor(private route:ActivatedRoute, private _replicaService:ReplicasService) {
     this.route.params.subscribe(params => {
@@ -21,7 +24,12 @@ export class ReplicaComponent implements OnInit {
     this._replicaService.getReplica(unCodigo)
           .subscribe (replicaEncontrada => {
             console.log(replicaEncontrada);
-            this.replica = replicaEncontrada;})
+            this.replica = replicaEncontrada;
+            this.colectores=this.replica.colectores
+            this.material=this.replica.material
+          if(this.replica.preparador){
+            this.preparador=this.replica.preparador
+          }})
    }
 
   ngOnInit() {

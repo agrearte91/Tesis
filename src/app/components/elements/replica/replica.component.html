@@ -20,8 +20,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Materiales</td>
-                    <td>{{replica.material}}</td>
+                    <td>Material</td>
+                    <td>{{material}}</td>
                 </tr>
                 <tr>
                     <td>Descripcion</td>
@@ -41,7 +41,7 @@
                 </tr>
                 <tr>
                     <td>Fecha</td>
-                    <td>{{replica.fechaIngreso}}</td>
+                    <td>{{replica.fechaIngreso| date: 'dd/MM/yyyy'}}</td>
                 </tr>
                 <tr>
                     <td>Codigo</td>
@@ -51,7 +51,7 @@
                     <td>Colectores</td>
                     <td>
                         <ul>
-                            <li *ngFor="let colector of replica.colectores">
+                            <li *ngFor="let colector of colectores">
                                 {{colector.apellidos}} {{colector.nombres}} {{colector.dni}}
                             </li>
                         </ul>
@@ -67,11 +67,11 @@
                         </ul>
                     </td>
                 </tr>
-                <tr *ngIf="replica.preparador">
-                    <td>Prestador</td>
+                <tr *ngIf="preparador">
+                    <td>Preparador</td>
                     <td>{{replica.preparador}}</td>
                 </tr>
-                <tr *ngIf="replica.preparador">
+                <tr *ngIf="preparador">
                     <td>Tecnicas Utilizadas</td>
                     <td>{{replica.tecnicasUtilizadas}}</td>
                 </tr>

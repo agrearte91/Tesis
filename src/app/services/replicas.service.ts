@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ReplicasService {
+export class ReplicasService {  
 
   constructor(private http: HttpClient) {
    }
@@ -32,8 +32,8 @@ export class ReplicasService {
     return this.http.get(`http://localhost:3001/api/personasFiltro/${termino}`,{}).pipe(map(data =>data['personas']));
   }
 
-   updateReplica(replica: any, posicion:number){
-   //  this.replicas[posicion]=replica;
+   updateReplica(replica: any, id:string){
+    return this.http.put(`http://localhost:3001/api/replica/${id}`,replica).pipe(map(data => data ['replicaActualizada']))
      
    }
 

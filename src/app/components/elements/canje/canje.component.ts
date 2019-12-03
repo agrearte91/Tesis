@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
-  selector: 'app-exchange',
-  templateUrl: './exchange.component.html',
+  selector: 'app-canje',
+  templateUrl: './canje.component.html',
   styleUrls: []
 })
-export class ExchangeComponent implements OnInit {
+export class CanjeComponent implements OnInit {
 
   constructor() { }
 
