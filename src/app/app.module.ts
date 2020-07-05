@@ -7,10 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
-import { ExhibitionComponent } from './components/forms/exhibition/exhibition.component';
+
 import { ExchangeComponent } from './components/forms/exchange/exchange.component';
 import { DonationComponent } from './components/forms/donation/donation.component';
-import { LoanComponent } from './components/forms/loan/loan.component';
 import { HomeComponent } from './components/home/home.component';
 import { DataTablesModule } from 'angular-datatables';
 
@@ -26,16 +25,23 @@ import { PiezaComponent } from './components/elements/pieza/pieza.component';
 import { FormEditPiezaComponent } from './components/forms/form-edit-pieza/form-edit-pieza.component';
 import { FormPiezaComponent } from './components/forms/form-pieza/form-pieza.component';
 import { HomePiezaComponent } from './components/home/home-pieza/home-pieza.component';
+import { HomeLoanComponent } from './components/home/home-loan/home-loan.component';
+import { HomeMakealoanComponent } from './components/home/home-makealoan/home-makealoan.component';
+import { HomeExhibitionComponent } from './components/home/home-exhibition/home-exhibition.component';
+import { FormExhibitionComponent } from './components/forms/form-exhibition/form-exhibition.component';
+import { FormLoanComponent } from './components/forms/form-loan/form-loan.component';
+import { FormMakealoanComponent } from './components/forms/form-makealoan/form-makealoan.component';
+import { LoanComponent } from './components/elements/loan/loan.component';
+import { MakealoanComponent } from './components/elements/makealoan/makealoan.component';
+import { ExhibitionComponent } from './components/elements/exhibition/exhibition.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ReplicaComponent,
-    ExhibitionComponent,
     ExchangeComponent,
-    DonationComponent,
-    LoanComponent,
+    DonationComponent,  
     HomeComponent,
     HomeReplicaComponent,
     FormReplicaComponent,
@@ -43,7 +49,17 @@ import { HomePiezaComponent } from './components/home/home-pieza/home-pieza.comp
     PiezaComponent,
     FormEditPiezaComponent,
     FormPiezaComponent,
-    HomePiezaComponent
+    HomePiezaComponent,
+    HomeLoanComponent,
+    HomeMakealoanComponent,
+    HomeExhibitionComponent,
+    FormExhibitionComponent,
+    FormLoanComponent,
+    FormMakealoanComponent,
+    LoanComponent,
+    MakealoanComponent,
+    ExhibitionComponent
+
   ],
   imports: [
     BrowserModule,
