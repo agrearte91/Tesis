@@ -8,8 +8,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 
-import { ExchangeComponent } from './components/forms/exchange/exchange.component';
-import { DonationComponent } from './components/forms/donation/donation.component';
 import { HomeComponent } from './components/home/home.component';
 import { DataTablesModule } from 'angular-datatables';
 
@@ -40,8 +38,6 @@ import { ExhibitionComponent } from './components/elements/exhibition/exhibition
     AppComponent,
     NavbarComponent,
     ReplicaComponent,
-    ExchangeComponent,
-    DonationComponent,  
     HomeComponent,
     HomeReplicaComponent,
     FormReplicaComponent,
