@@ -36,7 +36,35 @@
         {{recibida}}
     </form>
     <div *ngIf="recibida">
-        <app-form-replica></app-form-replica>
+        <div class="row">
+            <div class="col-6">
+                <h2> Lista de Piezas y replicas</h2>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-success" (click)="agregarElemento()">Agregar Replica</button>
+            </div>
+        </div>
+
+
+        <div class="accordion" id="accordionExample">
+            <div class="card" *ngFor="let elemento of elementos">
+                <div class="card-header" [id]="'head'+elemento">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+elemento" aria-expanded="true" [attr.aria-controls]="'collapse'+elemento">
+                        Collapsible Group Item #{{elemento}}
+                      </button>
+                    </h2>
+                </div>
+
+                <div id="collapse{{elemento}}" class="collapse" [attr.aria-labelledby]="'head'+elemento" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <app-form-replica></app-form-replica>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
     <div *ngIf="!recibida">

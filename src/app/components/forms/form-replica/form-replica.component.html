@@ -2,11 +2,15 @@
 <h4>Alta de Replica</h4>
 <hr>
 
+<div class="alert alert-success text-center" role="alert" *ngIf="operacionExitosa">
+    Datos Guardados Correctamente!
+</div>
+
 <form [formGroup]="formReplica" (ngSubmit)="guardarFormulario()">
     <div class="form-row">
 
         <div class="form-group col">
-            <label class="col-1 col-form-label">Codigo</label>
+            <label class="col-6 col-form-label">Codigo</label>
             <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['codigo'].valid}">
                 <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['codigo'].touched && !formReplica.controls['codigo'].valid}" placeholder="Codigo" formControlName="codigo">
                 <div class="invalid-feedback" *ngIf="formReplica.controls['codigo'].errors?.required">
@@ -16,7 +20,7 @@
         </div>
 
         <div class="form-group col">
-            <label class="col-1 col-form-label">Material</label>
+            <label class="col-6 col-form-label">Material</label>
             <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['material'].valid}">
                 <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['material'].touched && !formReplica.controls['material'].valid}" placeholder="Material de fabricacion" formControlName="material">
                 <div class="invalid-feedback" *ngIf="formReplica.controls['material'].errors?.required">
@@ -27,7 +31,7 @@
     </div>
 
     <div class="form-group">
-        <label class="col-1 col-form-label">Descripción</label>
+        <label class="col-12 col-form-label">Descripción</label>
         <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['descripcion'].valid}">
             <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['descripcion'].touched && !formReplica.controls['descripcion'].valid}" placeholder="breve descripción de la réplica" formControlName="descripcion">
             <div class="invalid-feedback" *ngIf="formReplica.controls['descripcion'].errors?.minlength">
@@ -41,7 +45,7 @@
     </div>
     <div class="form-row">
         <div class="form-group col">
-            <label class="col-1 col-form-label">Localidad</label>
+            <label class="col-12 col-form-label">Localidad</label>
             <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['localidad'].valid}">
                 <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['localidad'].touched && !formReplica.controls['localidad'].valid}" placeholder="localidad" formControlName="localidad">
                 <div class="invalid-feedback" *ngIf="formReplica.controls['localidad'].errors?.required">
@@ -55,7 +59,7 @@
         <label class="col-12 col-form-label">Medidas de la Replica</label>
         <div class="form-group row">
 
-            <div class="form-group col">
+            <div class="form-group col-2">
 
                 <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['medidasReplica'].controls['unidadDeMedida'].valid}">
                     <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['medidasReplica'].touched && !formReplica.controls['medidasReplica'].valid}" placeholder="Unidad de medida" formControlName="unidadDeMedida">
@@ -115,7 +119,7 @@
 
     <div class="form-row">
         <div class="form-group col">
-            <label class="col-1 col-form-label">Edad</label>
+            <label class="col-6 col-form-label">Edad</label>
             <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['edad'].valid}">
                 <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['edad'].touched && !formReplica.controls['edad'].valid}" placeholder=" Edad del fósil expresada en años " formControlName="edad">
                 <div class="invalid-feedback" *ngIf="formReplica.controls['edad'].errors?.min ">
@@ -127,7 +131,7 @@
             </div>
         </div>
         <div class="form-group col ">
-            <label class="col-4 col-form-label ">Fecha de Ingreso</label>
+            <label class="col-6 col-form-label ">Fecha de Ingreso</label>
             <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['fechaIngreso'].valid}">
                 <input type="date" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['fechaIngreso'].touched && !formReplica.controls['fechaIngreso'].valid}" placeholder="Fecha de Ingreso" formControlName="fechaIngreso">
                 <div class="invalid-feedback" *ngIf="formReplica.controls['fechaIngreso'].errors?.required ">
@@ -218,10 +222,13 @@
             </div>
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row" *ngIf="!operacionExitosa">
         <button type="submit" class="btn btn-primary col" [disabled]="!formReplica.valid">
             Confirmar
         </button>
+    </div>
+    <div class="alert alert-success text-center" role="alert" *ngIf="operacionExitosa">
+        Datos Guardados Correctamente!
     </div>
 
 

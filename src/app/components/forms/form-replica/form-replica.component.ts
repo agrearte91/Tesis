@@ -8,11 +8,12 @@ import {Router} from '@angular/router';
   styleUrls: []
 })
 export class FormReplicaComponent implements OnInit {
-
+  
+  operacionExitosa=false;
   mostrarPreparador=false;
   formReplica:FormGroup;
   personas:[] = [];
-
+  
     codigo:null
     taxon:null
     descripcion:null
@@ -70,11 +71,13 @@ export class FormReplicaComponent implements OnInit {
       let colec = this.formReplica.value.colectores[i].split(' ')
       this.formReplica.value.colectores[i]=colec[colec.length-1]
     }
+
     this._replicaService.agregarReplica(this.formReplica.value)
       .subscribe(nuevaReplica => {
         console.log(nuevaReplica);
       });
-    this.routes.navigate(['/home-replica']);
+      this.operacionExitosa=true;
+    //this.routes.navigate(['/home-replica']);
 
   }
 

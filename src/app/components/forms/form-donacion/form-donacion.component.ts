@@ -7,9 +7,10 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: []
 })
 export class FormDonacionComponent implements OnInit {
-
+  contador=0
   formDonacion:FormGroup
   fecha:Date;
+  elementos: number[]=[];
   recibida;
   constructor() {
     this.fecha = new Date();
@@ -24,7 +25,10 @@ export class FormDonacionComponent implements OnInit {
     
     console.log(this.formDonacion)
   }
-
+  
+  agregarElemento(){
+    this.elementos.push(this.contador++);
+  }
   ngOnInit() {
   }
 }
