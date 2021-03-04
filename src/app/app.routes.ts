@@ -15,11 +15,10 @@ import { FormReplicaComponent } from './components/forms/form-replica/form-repli
 
 import { FormEditReplicaComponent } from './components/forms/form-edit-replica/form-edit-replica.component';
 
-import { DonationComponent } from './components/forms/donation/donation.component';
+
 import { FormLoanComponent } from './components/forms/form-loan/form-loan.component';
 import { FormMakealoanComponent} from './components/forms/form-makealoan/form-makealoan.component';
 import { FormExhibitionComponent } from './components/forms/form-exhibition/form-exhibition.component';
-import { ExchangeComponent } from './components/forms/exchange/exchange.component';
 
 //elements
 import { ReplicaComponent } from './components/elements/replica/replica.component';
@@ -33,6 +32,9 @@ import { HomeDonacionComponent } from './components/home/home-donacion/home-dona
 import { HomeCanjeComponent } from './components/home/home-canje/home-canje.component';
 import { FormCanjeComponent } from './components/forms/form-canje/form-canje.component';
 import { FormDonacionComponent } from './components/forms/form-donacion/form-donacion.component';
+import { DonacionComponent } from './components/elements/donacion/donacion.component';
+import { CanjeComponent } from './components/elements/canje/canje.component';
+
 
 
 export const ROUTES: Routes = [
@@ -66,8 +68,8 @@ export const ROUTES: Routes = [
 
 
     { path: 'edit-replica/:id', component: FormEditReplicaComponent },
-    { path: 'donacion', component: DonationComponent },
-    { path: 'cange', component: ExchangeComponent },
+    { path: 'donacion', component: DonacionComponent },
+    { path: 'cange', component: CanjeComponent },
 
     { path: '**', pathMatch: 'full', redirectTo: 'replica' }
     

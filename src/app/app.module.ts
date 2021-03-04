@@ -9,8 +9,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 
-import { ExhibitionComponent } from './components/forms/exhibition/exhibition.component';
-import { LoanComponent } from './components/forms/loan/loan.component';
+import { ExhibitionComponent } from './components/elements/exhibition/exhibition.component';
+import { LoanComponent } from './components/elements/loan/loan.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { DataTablesModule } from 'angular-datatables';
@@ -34,9 +34,8 @@ import { HomeExhibitionComponent } from './components/home/home-exhibition/home-
 import { FormExhibitionComponent } from './components/forms/form-exhibition/form-exhibition.component';
 import { FormLoanComponent } from './components/forms/form-loan/form-loan.component';
 import { FormMakealoanComponent } from './components/forms/form-makealoan/form-makealoan.component';
-import { LoanComponent } from './components/elements/loan/loan.component';
 import { MakealoanComponent } from './components/elements/makealoan/makealoan.component';
-import { ExhibitionComponent } from './components/elements/exhibition/exhibition.component';
+
 
 import { HomeCanjeComponent } from './components/home/home-canje/home-canje.component';
 import { HomeDonacionComponent } from './components/home/home-donacion/home-donacion.component';
@@ -53,10 +52,6 @@ import { FormEditCanjeComponent } from './components/forms/form-edit-canje/form-
     AppComponent,
     NavbarComponent,
     ReplicaComponent,
-
-    ExhibitionComponent,
-    LoanComponent,
-
     HomeComponent,
     HomeReplicaComponent,
     FormReplicaComponent,
@@ -74,7 +69,7 @@ import { FormEditCanjeComponent } from './components/forms/form-edit-canje/form-
     FormMakealoanComponent,
     LoanComponent,
     MakealoanComponent,
-    ExhibitionComponent
+    ExhibitionComponent,
 
     HomeCanjeComponent,
     HomeDonacionComponent,
