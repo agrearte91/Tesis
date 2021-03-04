@@ -2,10 +2,10 @@
   <h1 class="card-header text-muted">
       <div class="row">
           <div class=col>
-              Detalle de Pieza detallado
+              Detalle de Pieza:
           </div>
           <div class="col" style="float: right" style="text-align: right">
-              <button class="btn btn-outline-danger" routerLink='/home-pieza' routerLinkActive="active">volver al menu</button>
+              <button class="btn btn-outline-danger" routerLink='/home-pieza' routerLinkActive="active">Volver a Piezas</button>
           </div>
       </div>
   </h1>
@@ -19,12 +19,16 @@
               </tr>
           </thead>
           <tbody>
+                <tr>
+                    <td>Código</td>
+                    <td>{{pieza.taxon}}</td>
+                </tr>
               <tr>
-                  <td>Taxon</td>
+                  <td>Estado</td>
                   <td>{{pieza.taxon}}</td>
               </tr>
               <tr>
-                  <td>Descripcion</td>
+                  <td>Descripción</td>
                   <td>{{pieza.descripcion}}</td>
               </tr>
               <tr>
@@ -42,10 +46,6 @@
               <tr>
                   <td>Fecha</td>
                   <td>{{pieza.fecha}}</td>
-              </tr>
-              <tr>
-                  <td>Codigo</td>
-                  <td>{{pieza.codigo}}</td>
               </tr>
               <tr>
                   <td>Colectores</td>
