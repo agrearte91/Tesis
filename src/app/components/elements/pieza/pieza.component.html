@@ -1,0 +1,81 @@
+<div class="card">
+  <h1 class="card-header text-muted">
+      <div class="row">
+          <div class=col>
+              Detalle de Pieza:
+          </div>
+          <div class="col" style="float: right" style="text-align: right">
+              <button class="btn btn-outline-danger" routerLink='/home-pieza' routerLinkActive="active">Volver a Piezas</button>
+          </div>
+      </div>
+  </h1>
+  <div class="card-body">
+
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th scope="col">Propiedades</th>
+                  <th scope="col">Valores</th>
+              </tr>
+          </thead>
+          <tbody>
+                <tr>
+                    <td>Código</td>
+                    <td>{{pieza.taxon}}</td>
+                </tr>
+              <tr>
+                  <td>Estado</td>
+                  <td>{{pieza.taxon}}</td>
+              </tr>
+              <tr>
+                  <td>Descripción</td>
+                  <td>{{pieza.descripcion}}</td>
+              </tr>
+              <tr>
+                  <td>Localidad</td>
+                  <td>{{pieza.localidad}}</td>
+              </tr>
+              <tr>
+                  <td>Unidad</td>
+                  <td>{{pieza.unidad}}</td>
+              </tr>
+              <tr>
+                  <td>Edad</td>
+                  <td>{{pieza.edad}}</td>
+              </tr>
+              <tr>
+                  <td>Fecha</td>
+                  <td>{{pieza.fecha}}</td>
+              </tr>
+              <tr>
+                  <td>Colectores</td>
+                  <td>
+                      <ul>
+                          <li *ngFor="let colector of pieza.colectores">
+                              {{colector}}
+                          </li>
+                      </ul>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Ubicacion</td>
+                  <td>
+                      <ul>
+                          <li> <b>Codigo de Repositorio:</b> {{pieza.ubicacion.codRepositorio}}</li>
+                          <li> <b>Numero Estante:</b> {{pieza.ubicacion.numEstante}}</li>
+                          <li> <b>Numero Estanteria:</b> {{pieza.ubicacion.numEstanteria}} </li>
+                      </ul>
+                  </td>
+              </tr>
+              <tr *ngIf="pieza.preparador">
+                  <td>Prestador</td>
+                  <td>{{pieza.preparador}}</td>
+              </tr>
+              <tr *ngIf="pieza.preparador">
+                  <td>Tecnicas Utilizadas</td>
+                  <td>{{pieza.tecnicasUtilizadas}}</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
