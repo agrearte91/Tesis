@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
-  selector: 'app-donation',
-  templateUrl: './donation.component.html',
+  selector: 'app-form-canje',
+  templateUrl: './form-canje.component.html',
   styleUrls: []
 })
-export class DonationComponent implements OnInit {
+export class FormCanjeComponent implements OnInit {
 
   constructor() { }
 

@@ -2,7 +2,7 @@
 <h4>Editar Replica</h4>
 <hr>
 
-<form [formGroup]="formReplica" (ngSubmit)="actualizarDatos()">
+<form *ngIf="formReplica" [formGroup]="formReplica" (ngSubmit)="actualizarDatos()">
     <div class="form-row">
 
         <div class="form-group col">
@@ -13,10 +13,10 @@
         </div>
 
         <div class="form-group col">
-            <label class="col-1 col-form-label">Taxon</label>
+            <label class="col-1 col-form-label">Material</label>
             <div class="col-md-12">
-                <input type="text" readonly="true" class="form-control" placeholder="taxon" formControlName="taxon">
-                <div class="invalid-feedback" *ngIf="formReplica.controls['taxon'].errors?.required">
+                <input type="text" readonly="true" class="form-control" placeholder="material" formControlName="material">
+                <div class="invalid-feedback" *ngIf="formReplica.controls['material'].errors?.required">
                     Campo Obligatorio
                 </div>
             </div>
@@ -50,44 +50,67 @@
 
 
 
-    <div formGroupName="dimensiones">
-        <label class="col-12 col-form-label">Dimensiones de la Replica</label>
+    <div formGroupName="medidasReplica">
+        <label class="col-12 col-form-label">Medidas de la Replica</label>
         <div class="form-group row">
 
             <div class="form-group col">
 
-                <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['dimensiones'].controls['unidadDeMedida'].valid}">
-                    <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['dimensiones'].touched && !formReplica.controls['dimensiones'].valid}" placeholder="Unidad de medida" formControlName="unidadDeMedida">
-                    <div class="invalid-feedback" *ngIf="formReplica.controls['dimensiones'].controls['unidadDeMedida'].errors?.required ">
+                <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['medidasReplica'].controls['unidadDeMedida'].valid}">
+                    <input type="text" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['medidasReplica'].touched && !formReplica.controls['medidasReplica'].valid}" placeholder="Unidad de medida" formControlName="unidadDeMedida">
+                    <div class="invalid-feedback" *ngIf="formReplica.controls['medidasReplica'].controls['unidadDeMedida'].errors?.required ">
                         Campo Obligatorio
                     </div>
                 </div>
             </div>
-            <div class="form-group col" [ngClass]="{'was-validated': formReplica.controls['dimensiones'].controls['alto'].valid}">
+            <div class="form-group col" [ngClass]="{'was-validated': formReplica.controls['medidasReplica'].controls['alto'].valid}">
 
                 <div class="col-md-12">
-                    <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['dimensiones'].touched && !formReplica.controls['dimensiones'].valid}" placeholder="Alto" formControlName="alto">
-                    <div class="invalid-feedback" *ngIf="formReplica.controls['dimensiones'].controls['alto'].errors?.required ">
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['medidasReplica'].touched && !formReplica.controls['medidasReplica'].valid}" placeholder="Alto" formControlName="alto">
+                    <div class="invalid-feedback" *ngIf="formReplica.controls['medidasReplica'].controls['alto'].errors?.required ">
                         Campo Obligatorio
                     </div>
                 </div>
             </div>
-            <div class="form-group col" [ngClass]="{'was-validated': formReplica.controls['dimensiones'].controls['ancho'].valid}">
+            <div class="form-group col" [ngClass]="{'was-validated': formReplica.controls['medidasReplica'].controls['ancho'].valid}">
 
                 <div class="col-md-12">
-                    <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['dimensiones'].touched && !formReplica.controls['dimensiones'].valid}" placeholder="Ancho" formControlName="ancho">
-                    <div class="invalid-feedback" *ngIf="formReplica.controls['dimensiones'].controls['ancho'].errors?.required ">
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['medidasReplica'].touched && !formReplica.controls['medidasReplica'].valid}" placeholder="Ancho" formControlName="ancho">
+                    <div class="invalid-feedback" *ngIf="formReplica.controls['medidasReplica'].controls['ancho'].errors?.required ">
                         Campo Obligatorio
                     </div>
                 </div>
             </div>
+            <div class="form-group col" [ngClass]="{'was-validated': formReplica.controls['medidasReplica'].controls['largo'].valid}">
+
+                <div class="col-md-12">
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['medidasReplica'].touched && !formReplica.controls['medidasReplica'].valid}" placeholder="Largo" formControlName="largo">
+                    <div class="invalid-feedback" *ngIf="formReplica.controls['medidasReplica'].controls['largo'].errors?.required ">
+                        Campo Obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col" [ngClass]="{'was-validated': formReplica.controls['medidasReplica'].controls['diametro'].valid}">
+
+                <div class="col-md-12">
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['medidasReplica'].touched && !formReplica.controls['medidasReplica'].valid}" placeholder="diametro" formControlName="diametro">
+                    <div class="invalid-feedback" *ngIf="formReplica.controls['medidasReplica'].controls['diametro'].errors?.required ">
+                        Campo Obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col" [ngClass]="{'was-validated': formReplica.controls['medidasReplica'].controls['circunferencia'].valid}">
+
+                <div class="col-md-12">
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['medidasReplica'].touched && !formReplica.controls['medidasReplica'].valid}" placeholder="diametro" formControlName="circunferencia">
+                    <div class="invalid-feedback" *ngIf="formReplica.controls['medidasReplica'].controls['circunferencia'].errors?.required ">
+                        Campo Obligatorio
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
-
-
-
-
 
 
     <div class="form-row">
@@ -103,11 +126,12 @@
                 </div>
             </div>
         </div>
+
         <div class="form-group col ">
-            <label class="col-1 col-form-label ">Fecha</label>
-            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['fecha'].valid}">
-                <input type="date" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['fecha'].touched && !formReplica.controls['fecha'].valid}" placeholder="dd/mm/aaaa" formControlName="fecha">
-                <div class="invalid-feedback" *ngIf="formReplica.controls['fecha'].errors?.required ">
+            <label class="col-1 col-form-label ">Fecha de Ingreso</label>
+            <div class="col-md-12" [ngClass]="{'was-validated': formReplica.controls['fechaIngreso'].valid}">
+                <input type="date" class="form-control" [ngClass]="{'is-invalid': formReplica.controls['fechaIngreso'].touched && !formReplica.controls['fechaIngreso'].valid}" placeholder="dd/mm/aaaa" formControlName="fechaIngreso">
+                <div class="invalid-feedback" *ngIf="formReplica.controls['fechaIngreso'].errors?.required ">
                     Campo Obligatorio
                 </div>
             </div>
@@ -120,9 +144,14 @@
             <label class="col-12 col-form-label ">Colector</label>
             <div *ngFor="let colector of formReplica.controls[ 'colectores'].controls; let i=index " class="col-md-12 " formArrayName="colectores">
                 <div class="form-group row ">
-                    <div class="form-group col ">
-                        <input type="text " class="form-control " placeholder="colectores " [formControlName]="i ">
+
+                    <div class="form-group col">
+                        <input #termino (keyup)="buscarPersona(termino.value)" type="search" list="listapersonas" class="form-control" placeholder="colectores" [formControlName]="i">
                     </div>
+                    <datalist id="listapersonas">
+                         <option *ngFor="let persona of personas;" [value]="persona.nombres+' '+persona.apellidos+' '+ persona.dni + ' ' +persona._id">
+                    </datalist>
+
                     <div class="form-group col " *ngIf="i>0">
                         <button (click)="quitarColector(i)" type="button" class="btn btn-outline-danger">Quitar</button>
                     </div>

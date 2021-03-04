@@ -1,22 +1,22 @@
 <div class="container">
     <br>
-    <button type="button" class="btn btn-outline-primary" routerLink='/form-replica' routerLinkActive="active">Nueva Replica</button>
+    <button type="button" class="btn btn-outline-primary" routerLink='/form-canje' routerLinkActive="active">Nuevo Canje</button>
     <div class="row">
         <div class="col-12">
             <br>
-            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped" style="width:100%">
+            <table datatable id="example" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <!-- <th><input type="checkbox" onclick="checkAll(this)"></th> -->
                         <th>Codigo</th>
-                        <th>Material</th>
                         <th>Descripcion</th>
+                        <th>Tipo</th>
+                        <th>Actores</th>
                         <th>Detalle / Editar / Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let replica of replicas; let i = index;">
-                        <!-- <td><input type="checkbox" name=""></td> -->
+                    <!-- <tr *ngFor="let replica of replicas; let i = index;">
                         <td>{{replica.codigo}}</td>
                         <td>{{replica.material}}</td>
                         <td>{{replica.descripcion}}</td>
@@ -26,8 +26,7 @@
                             <button type="button" class="btn btn-danger btn-sm" style="margin-right: 3px"><i class="far fa-trash-alt"></i> </button>
                         </td>
 
-                    </tr>
-
+                    </tr> -->
 
                 </tbody>
             </table>

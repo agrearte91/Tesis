@@ -20,8 +20,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Taxon</td>
-                    <td>{{replica.taxon}}</td>
+                    <td>Material</td>
+                    <td>{{material}}</td>
                 </tr>
                 <tr>
                     <td>Descripcion</td>
@@ -32,8 +32,8 @@
                     <td>{{replica.localidad}}</td>
                 </tr>
                 <tr>
-                    <td>Unidad</td>
-                    <td>{{replica.unidad}}</td>
+                    <td>Alto</td>
+                    <td>{{replica.medidasReplica.alto}}</td>
                 </tr>
                 <tr>
                     <td>Edad</td>
@@ -41,7 +41,7 @@
                 </tr>
                 <tr>
                     <td>Fecha</td>
-                    <td>{{replica.fecha}}</td>
+                    <td>{{replica.fechaIngreso| date: 'dd/MM/yyyy'}}</td>
                 </tr>
                 <tr>
                     <td>Codigo</td>
@@ -51,8 +51,8 @@
                     <td>Colectores</td>
                     <td>
                         <ul>
-                            <li *ngFor="let colector of replica.colectores">
-                                {{colector}}
+                            <li *ngFor="let colector of colectores">
+                                {{colector.apellidos}} {{colector.nombres}} {{colector.dni}}
                             </li>
                         </ul>
                     </td>
@@ -67,11 +67,11 @@
                         </ul>
                     </td>
                 </tr>
-                <tr *ngIf="replica.preparador">
-                    <td>Prestador</td>
+                <tr *ngIf="preparador">
+                    <td>Preparador</td>
                     <td>{{replica.preparador}}</td>
                 </tr>
-                <tr *ngIf="replica.preparador">
+                <tr *ngIf="preparador">
                     <td>Tecnicas Utilizadas</td>
                     <td>{{replica.tecnicasUtilizadas}}</td>
                 </tr>
